@@ -21,17 +21,19 @@ const sendNotification = (req, res) => {
 
     setTimeout(function() {
       webPush.sendNotification(subscription, payload, options)
+          .then(function() {
+            res.status(201).send();
+          })
           .catch(function(error) {
             console.log(error);
+            res.status(500).send();
           });
     }, req.body.delay * 1000);
 
-    res.status(201).send();
-
   } else {
-    res.statusCode = 405
+    res.statusCode = 405;
+    res.end();
   }
-  res.end();
 }
 
 export default sendNotification
