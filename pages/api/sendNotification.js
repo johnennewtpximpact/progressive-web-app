@@ -30,8 +30,8 @@ const sendNotification = (req, res) => {
 
   } else {
     res.statusCode = 405
-    res.end()
   }
+  res.end();
 }
 
 export default sendNotification
